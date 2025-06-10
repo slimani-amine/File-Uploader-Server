@@ -1,10 +1,10 @@
 import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "../storage";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { insertUploadedFileSchema } from "./src/lib/schema";
+import { insertUploadedFileSchema } from "../lib/schema";
 
 // Extend Express Request type to include file
 interface MulterRequest extends Request {
