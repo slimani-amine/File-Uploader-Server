@@ -45,7 +45,7 @@ coverage/
 .nyc_output/
 
 # Upload directory
-uploads/
+uploads/*
 temp/
 
 # TypeScript
