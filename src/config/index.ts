@@ -9,6 +9,8 @@ export const CONFIG = {
   MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '5242880'), // 5MB default
   ALLOWED_FILE_TYPES: (process.env.ALLOWED_FILE_TYPES || 'image/jpeg,image/png,image/gif').split(','),
   NODE_ENV: process.env.NODE_ENV || 'development',
+  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017',
+  DB_NAME: process.env.DB_NAME || 'fileUploader',
 } as const;
 
 // Validate configuration
