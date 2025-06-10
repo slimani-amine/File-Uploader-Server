@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { insertUploadedFileSchema } from "./shared/schema";
+import { insertUploadedFileSchema } from "./src/lib/schema";
 
 // Extend Express Request type to include file
 interface MulterRequest extends Request {
@@ -47,7 +47,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     upload.single("file"),
     async (req: MulterRequest, res) => {
       try {
-
         if (!req.file) {
           return res.status(400).json({ error: "No file uploaded" });
         }
