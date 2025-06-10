@@ -25,10 +25,7 @@ router.post(
   upload.single("file"),
   async (req, res) => {
     try {
-      console.log("Upload request received:", req.file);
-
       if (!req.file) {
-        console.log("No file in request");
         return res.status(400).json({ error: "No file uploaded" });
       }
 
@@ -42,9 +39,7 @@ router.post(
         createdAt: new Date(),
       };
 
-      console.log("Saving file document:", fileDoc);
       const result = await db.collection("files").insertOne(fileDoc);
-      console.log("File saved with ID:", result.insertedId);
 
       res.json({ id: result.insertedId, ...fileDoc });
     } catch (error) {

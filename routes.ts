@@ -47,7 +47,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     upload.single("file"),
     async (req: MulterRequest, res) => {
       try {
-        console.log("here");
 
         if (!req.file) {
           return res.status(400).json({ error: "No file uploaded" });
