@@ -17,7 +17,23 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use(
   cors({
-    origin: CONFIG.FRONTEND_URL,
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        CONFIG.FRONTEND_URL,
+        /\.ngrok-free\.app$/,
+        'https://file-uploader-client-i5oq.vercel.app'
+      ];
+      
+      if (!origin || allowedOrigins.some(allowed => 
+        typeof allowed === 'string' 
+          ? allowed === origin 
+          : allowed.test(origin)
+      )) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

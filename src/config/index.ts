@@ -11,10 +11,9 @@ export const CONFIG = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017',
   DB_NAME: process.env.DB_NAME || 'fileUploader',
-  FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',
+  FRONTEND_URL: process.env.FRONTEND_URL || 'https://file-uploader-client-i5oq.vercel.app/',
 } as const;
 
-// Validate configuration
 if (!CONFIG.UPLOAD_DIR) {
   throw new Error('UPLOAD_DIR environment variable is required');
 }
