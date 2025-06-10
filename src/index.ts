@@ -10,23 +10,20 @@ import { handleUploadError } from "./middlewares/fileUpload";
 
 const app = express();
 
-// Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, "..", CONFIG.UPLOAD_DIR);
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-// Middleware
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin: "*",
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(`/${CONFIG.UPLOAD_DIR}`, express.static(uploadsDir));
 
-// Debug middleware
 if (CONFIG.NODE_ENV === "development") {
   app.use((req, res, next) => {
     console.log(`${req.method} ${req.url}`);
@@ -34,19 +31,15 @@ if (CONFIG.NODE_ENV === "development") {
   });
 }
 
-// Routes
 app.use("/api", fileRoutes);
 
-// Health check
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-// Error handling
 app.use(handleUploadError);
 app.use(errorHandler);
 
-// Start server
 async function startServer() {
   try {
     await connectDB();
@@ -59,7 +52,6 @@ async function startServer() {
   }
 }
 
-// Handle graceful shutdown
 process.on("SIGTERM", async () => {
   console.log("SIGTERM received. Shutting down gracefully...");
   await closeDB();
