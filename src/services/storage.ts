@@ -1,4 +1,4 @@
-import { users, uploadedFiles, type User, type InsertUser, type UploadedFile, type InsertUploadedFile } from "@shared/schema";
+import { InsertUploadedFile, InsertUser, UploadedFile, User } from "../types";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -29,18 +29,20 @@ export class MemStorage implements IStorage {
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.username === username
     );
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
+    const user: User = { ...insertUser, id, createdAt: new Date() };
     this.users.set(id, user);
     return user;
   }
 
-  async createUploadedFile(insertFile: InsertUploadedFile): Promise<UploadedFile> {
+  async createUploadedFile(
+    insertFile: InsertUploadedFile
+  ): Promise<UploadedFile> {
     const id = this.currentFileId++;
     const file: UploadedFile = {
       ...insertFile,
