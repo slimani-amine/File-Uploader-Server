@@ -8,7 +8,7 @@ import path from "path";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, "../uploads");

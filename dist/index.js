@@ -11,7 +11,7 @@ const db_1 = require("./lib/db");
 const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 // Create uploads directory if it doesn't exist
 const uploadsDir = path_1.default.join(__dirname, "../uploads");
 if (!require("fs").existsSync(uploadsDir)) {
