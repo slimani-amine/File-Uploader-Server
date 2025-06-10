@@ -36,6 +36,11 @@ yarn install
 
 ```env
 PORT=3000
+MONGODB_URI=mongodb://localhost:27017
+DB_NAME=fileUploader
+UPLOAD_DIR=uploads
+MAX_FILE_SIZE=5242880
+ALLOWED_FILE_TYPES=image/jpeg,image/png,image/gif
 NODE_ENV=development
 ```
 
