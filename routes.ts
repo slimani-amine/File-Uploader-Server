@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
-import { insertUploadedFileSchema } from "@shared/schema";
+import { insertUploadedFileSchema } from "./shared/schema";
 
 // Extend Express Request type to include file
 interface MulterRequest extends Request {
