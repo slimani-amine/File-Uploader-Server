@@ -17,8 +17,10 @@ if (!fs.existsSync(uploadsDir)) {
 
 app.use(
   cors({
-    origin: "*",
+    origin: CONFIG.FRONTEND_URL,
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 app.use(express.json());

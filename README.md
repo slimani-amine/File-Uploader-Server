@@ -35,7 +35,7 @@ yarn install
 3. Create a `.env` file in the root directory and add your environment variables:
 
 ```env
-PORT=3000
+PORT=3001
 MONGODB_URI=mongodb://localhost:27017
 DB_NAME=fileUploader
 UPLOAD_DIR=uploads
@@ -54,7 +54,7 @@ npm run dev
 yarn dev
 ```
 
-The server will start on http://localhost:3000 (or the port specified in your .env file).
+The server will start on http://localhost:3001 (or the port specified in your .env file).
 
 ## API Endpoints
 
