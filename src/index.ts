@@ -21,22 +21,25 @@ app.use(
       const allowedOrigins = [
         CONFIG.FRONTEND_URL,
         /\.ngrok-free\.app$/,
-        'https://file-uploader-client-i5oq.vercel.app'
+        "https://file-uploader-client-i5oq.vercel.app",
       ];
-      
-      if (!origin || allowedOrigins.some(allowed => 
-        typeof allowed === 'string' 
-          ? allowed === origin 
-          : allowed.test(origin)
-      )) {
+
+      if (
+        !origin ||
+        allowedOrigins.some((allowed) =>
+          typeof allowed === "string"
+            ? allowed === origin
+            : allowed.test(origin)
+        )
+      ) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
